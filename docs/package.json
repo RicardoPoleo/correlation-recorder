@@ -1,5 +1,5 @@
 {
-  "name": "correlation-recorder",
+  "name": "CorrelationRecorder",
   "version": "0.0.1",
   "description": "This Apache JMeter plugin enables you to easily load test applications with dynamic variables by automatically correlating them at recording time",
   "main": "index.js",
