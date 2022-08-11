@@ -10,7 +10,7 @@ module.exports = {
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
   description: description,
-  base: "/correlation-recorder/",
+  base: "/CorrelationRecorder/",
 
   /**
    * Extra tags to be injected to the page HTML `<head>`
