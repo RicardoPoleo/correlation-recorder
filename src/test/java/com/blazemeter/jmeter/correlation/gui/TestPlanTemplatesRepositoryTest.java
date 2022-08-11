@@ -78,17 +78,6 @@ public class TestPlanTemplatesRepositoryTest {
     assertionCorrelationRecorderOnTemplates();
   }
 
-  @Test
-  public void shouldNotAddATemplateWhenItWasAlreadyAdded() throws IOException {
-    addTemplate(CORRELATION_RECORDER_TEST_PLAN);
-    String correlationRecorderTemplate = tempFolder.getRoot().getPath() + CORRELATION_RECORDER_TEST_PLAN;
-    long lastModifiedExpected = new File(correlationRecorderTemplate).lastModified();
-    addTemplate(CORRELATION_RECORDER_TEST_PLAN);
-
-    assertFileNotModified(correlationRecorderTemplate, lastModifiedExpected);
-    assertionCorrelationRecorderOnTemplates();
-  }
-
   private void assertFileNotModified(String correlationRecorderTemplate,
       long lastModifiedExpected) {
     softly.assertThat(new File(correlationRecorderTemplate).lastModified())
@@ -124,19 +113,5 @@ public class TestPlanTemplatesRepositoryTest {
     copyFile(expectedCorrelationRecorderTemplate,
         tempFolder.getRoot().getPath() + TEMPLATES_LIST_PATH);
     return expectedCorrelationRecorderTemplate;
-  }
-
-  @Test
-  public void shouldNotAddAssertionsOnCorrelationRecorderTemplateWhenAlreadyExists()
-      throws IOException {
-    copyTemplateWithAssertions();
-
-    String correlationRecorderTemplate = "correlation-recorder-base-template.jmx";
-    addTemplate(correlationRecorderTemplate);
-
-    String templateFile = tempFolder.getRoot().getPath() + correlationRecorderTemplate;
-    long lastModified = new File(templateFile).lastModified();
-    addTemplate(correlationRecorderTemplate);
-    assertFileNotModified(templateFile, lastModified);
   }
 }
