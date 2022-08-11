@@ -191,21 +191,6 @@ public class LocalConfigurationTest {
         .anyMatch(r -> r.getInstalledTemplates().containsKey(SIEBEL_REPO_NAME)));
   }
 
-  @Test
-  public void shouldDownloadDependenciesWhenDownloadDependencies() throws IOException {
-    prepareMockServer();
-    prepareDependenciesFolder();
-    prepareDependency(firstDependency, mockURL("/" + DUMMY_FILE_VERSION_ONE), 1);
-
-    configuration.downloadDependencies(Collections.singletonList(firstDependency));
-
-    List<String> expectedDependencies = Collections.singletonList(DUMMY_FILE_VERSION_ONE);
-    List<String> actualDependencies = getInstalledDependencies();
-
-    softly.assertThat(expectedDependencies.size()).isEqualTo(actualDependencies.size());
-    softly.assertThat(expectedDependencies).containsAll(actualDependencies);
-  }
-
   private void prepareMockServer() throws IOException {
     wireMockServer.start();
     configureFor("localhost", wireMockServer.port());
